@@ -1,31 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import NavBar from './elements/navbar';
+import RandomName from './pages/randomName';
+import { Route, Switch } from 'react-router-dom';
 
 const navLinks = {
     Mix: '/mix',
-    Playlists: '/playlists'
+    Playlists: '/playlists',
+    "Name Generator": '/limpBizkit'
 };
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <NavBar name="mixed" links={navLinks}/>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar name="mixed" links={navLinks}/>
+      <Switch>
+        <Route exact path="/">
+          <h1> HOME </h1>
+        </Route>
+        <Route path="/mix">
+          <h1> Mix Time </h1>
+        </Route>
+        <Route path="/playlists">
+          <h1> Playlists </h1>
+        </Route>
+        <Route path="">
+          <RandomName/>
+        </Route>
+        <Route path="*">
+          <h1> 404! </h1>
+          <h3> You are in the wrong place... </h3>
+        </Route>
+      </Switch>
     </div>
   );
 }
