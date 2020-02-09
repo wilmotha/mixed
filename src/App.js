@@ -1,7 +1,12 @@
 import React from 'react';
-import NavBar from './elements/navbar';
-import RandomName from './pages/randomName';
 import { Route, Switch } from 'react-router-dom';
+
+// elements
+import NavBar from './elements/navbar';
+
+// pages
+import RandomName from './pages/randomName';
+import Mix from './pages/mix';
 
 const navLinks = {
     Mix: '/mix',
@@ -18,7 +23,7 @@ function App() {
           <h1> HOME </h1>
         </Route>
         <Route path="/mix">
-          <h1> Mix Time </h1>
+          <Mix />
         </Route>
         <Route path="/playlists">
           <h1> Playlists </h1>

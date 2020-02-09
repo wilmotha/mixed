@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Form from '../elements/form';
+import Search from '../elements/search';
 
 function nameChange(name1) {
     let name = "";
@@ -45,7 +45,7 @@ function RandomName() {
     return (
         <div>
             <h1>Limp Bizkit name generator</h1>
-            <Form 
+            <Search 
                 placeHolder="enter name"
                 data={name}
                 handleCancel={() => (setName(''))} 
