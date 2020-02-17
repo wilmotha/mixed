@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function Error(props) {
     const styles = css`
@@ -81,7 +81,7 @@ function Search(props) {
     };
 
     return (
-        <form css={styles} >
+        <form css={styles} {... props}>
             <link 
                 rel="stylesheet" 
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

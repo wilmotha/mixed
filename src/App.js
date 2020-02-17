@@ -1,41 +1,57 @@
-import React from 'react';
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
+import { useContext } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { ThemeContext } from './elements/themeContext';
 
 // elements
-import NavBar from './elements/navbar';
+import Navbar from './elements/navbar';
 
 // pages
 import RandomName from './pages/randomName';
 import Mix from './pages/mix';
 
-const navLinks = {
-    Mix: '/mix',
-    Playlists: '/playlists',
-    "Name Generator": '/limpBizkit'
+const navlinks = {
+    "Mix": "/mix",
+    "Playlists": "/playlists",
+    "Name Generator": "/limpBizkit"
 };
 
-function App() {
+function App(props) {
+  const theme = useContext(ThemeContext);
+
+  const styles = css`
+    background: ${theme.background};
+    color: ${theme.textColor};
+    main {
+      padding: 25px;
+      padding-top: 70px;
+    }
+  `;
+
   return (
-    <div className="App">
-      <NavBar name="mixed" links={navLinks}/>
-      <Switch>
-        <Route exact path="/">
-          <h1> HOME </h1>
-        </Route>
-        <Route path="/mix">
-          <Mix />
-        </Route>
-        <Route path="/playlists">
-          <h1> Playlists </h1>
-        </Route>
-        <Route path="">
-          <RandomName/>
-        </Route>
-        <Route path="*">
-          <h1> 404! </h1>
-          <h3> You are in the wrong place... </h3>
-        </Route>
-      </Switch>
+    <div css={styles}>
+      <Navbar name="mixed" darkModeHandler={props.darkModeHandler} links={navlinks}/>
+      <main>
+        <Switch>
+          <Route exact path="/">
+            <h1> HOME </h1>
+          </Route>
+          <Route path="/mix">
+            <Mix />
+          </Route>
+          <Route path="/playlists">
+            <h1> Playlists </h1>
+          </Route>
+          <Route path="">
+            <RandomName/>
+          </Route>
+          <Route path="*">
+            <h1> 404! </h1>
+            <h3> You are in the wrong place... </h3>
+          </Route>
+        </Switch>
+      </main>
     </div>
   );
 }
