@@ -7,6 +7,7 @@ import HamburgerMenu from './navbarElem/HamburgerMenu';
 import SiteTitle from './navbarElem/SiteTitle';
 import NavBarLinks from './navbarElem/NavbarLinks';
 import DarkMode from './navbarElem/DarkMode';
+import SpotifyLogin from './spotifyLogin';
 
 function NavBar(props) {
   const theme = useContext(ThemeContext);
@@ -40,6 +41,7 @@ function NavBar(props) {
       <NavBarLinks links={props.links}/>
       <DarkMode darkModeHandler={props.darkModeHandler}/>
       {/* <NavBarLinks links={{"Login": "/login"}}/> */}
+      <SpotifyLogin/>
     </nav>
   );
 }

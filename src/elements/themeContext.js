@@ -2,20 +2,20 @@ import React from 'react';
 
 export const theme = {
     light: {
-      themeColor: "ghostwhite",
-      background: "ghostwhite",
-      accent: "#C2185B",
-      accentHover: "#E91E63",
-      contentBox: "ghostwhite",
-      textColor: "black"
+      themeColor: "#ffffff",
+      background: "#fffffff",
+      accent: "#1ED760",
+      accentHover: "#19bd53",
+      contentBox: "#fffffff",
+      textColor: "#191414"
     },
     dark: {
-      themeColor: "#242424",
+      themeColor: "#191414",
       background: "#212121",
-      accent: "#C2185B",
-      accentHover: "#E91E63",
+      accent: "#1ED760",
+      accentHover: "#19bd53",
       contentBox: "#222222",
-      textColor: "ghostwhite"
+      textColor: "#ffffff"
     }
   };
   

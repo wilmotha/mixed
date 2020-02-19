@@ -8,20 +8,21 @@ import { ThemeContext, theme } from './elements/themeContext';
 import App from './App';
 
 
-const globalStyles = css`
+
+function Root() {
+    const [ darkSlider, setDarkSlider ] = useState(true);
+
+    const globalStyles = css`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet');
     body {
         font-family: 'Open Sans', sans-serif;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        background: ghostwhite;
-    }
+        background: ${darkSlider ? theme.dark : theme.light};
+      }
+    `;
 
-`;
-function Root() {
-    const [ darkSlider, setDarkSlider ] = useState(false);
-  
     return(
         <ThemeContext.Provider value={darkSlider ? theme.dark : theme.light}>
           <BrowserRouter >
