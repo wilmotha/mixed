@@ -10,6 +10,8 @@ import Navbar from './elements/navbar';
 // pages
 import RandomName from './pages/randomName';
 import Mix from './pages/mix';
+import Playlists from './pages/playlists';
+import Home from './pages/home'
 
 const navlinks = {
     "Mix": "/mix",
@@ -35,13 +37,13 @@ function App(props) {
       <main>
         <Switch>
           <Route exact path="/">
-            <h1> HOME </h1>
+            <Home/>
           </Route>
           <Route path="/mix">
             <Mix />
           </Route>
           <Route path="/playlists">
-            <h1> Playlists </h1>
+            <Playlists />
           </Route>
           <Route path="">
             <RandomName/>

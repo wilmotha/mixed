@@ -1,22 +1,9 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import { useEffect, useState, useContext } from 'react';
-import {ThemeContext} from './themeContext';
+import { ThemeContext } from './themeContext';
+import { setToken, loginUrl } from '../spotifyApi';
 
-
-export const authEndpoint = 'https://accounts.spotify.com/authorize';
-
-// put this in a struct
-const clientId = 'da9f7be280c04af894da601f1492e0af';
-const clientSecret = '';
-const redirectUri = 'http://localhost:3000/';
-const scopes = [
-    "user-read-currently-playing",
-    "user-read-playback-state",
-    // 'playlist-modify-public', 
-    // 'playlist-modify-private', 
-    // 'user-read-private'
-];
 
 const hash = window.location.hash
     .substring(1)
@@ -29,20 +16,18 @@ const hash = window.location.hash
         return initial;
     }, {}); 
 
-window.location.hash = "";
-
-function loginUrl() {
-    return `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`;
-}
+// window.location.hash = "";
 
 export default function SpotifyLogin(props) {
-    const [token, setToken] = useState("");
+    const [login, setLogin] = useState(false);
     const theme = useContext(ThemeContext);
-
+    
+    // add a timer that makes user renter login
     useEffect(() => {
         let _token = hash.access_token;
         if (_token) {
             setToken(_token);
+            setLogin(true);
         }
     }, [hash.access_token]);    
 
@@ -73,7 +58,7 @@ export default function SpotifyLogin(props) {
 
     return (
         <div>
-            {(!token) && (
+            {(!login) && (
                 <ul css={styles}>
                     <li>
                         <a href={loginUrl()}>
