@@ -34,7 +34,7 @@ function App(props) {
 
   return (
     <div css={styles}>
-      <Navbar name="mixed" darkModeHandler={props.darkModeHandler} links={navlinks}/>
+      <Navbar name="mixed" darkModeHandler={props.darkModeHandler} links={navlinks} setToken={props.setToken}/>
       <main>
         <Switch>
           <Route exact path="/">

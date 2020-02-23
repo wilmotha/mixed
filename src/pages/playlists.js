@@ -3,7 +3,7 @@ import { jsx, css } from '@emotion/core';
 import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../elements/themeContext';
 
-import { fetchData, spotifyApi } from '../spotifyApi';
+import { fetchData, TokenContext } from '../spotifyApi';
 
 import PlaylistDisplay from '../elements/playlistDisplay'
 
@@ -43,13 +43,15 @@ function PlaylistBox(props) {
 export default function Playlists() {
     const [ userData, setUserData ] = useState([]);
     const [ userPlaylists, setPlaylists ] = useState([]);
+    const token = useContext(TokenContext);
  
+
     useEffect(() => {
-        if (spotifyApi.token) {
-            fetchData(setUserData, "me");
-            fetchData(setPlaylists, "me/playlists");
+        if (token) {
+            fetchData(token, setUserData, "me");
+            fetchData(token, setPlaylists, "me/playlists");
         }
-    }, [ spotifyApi.token ]);
+    }, [ token ]);
     
     const styles = css`
 

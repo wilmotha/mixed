@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-unfetch';
-
+import React, { useContext } from 'react'
 
 // put this in a struct
 export let spotifyApi = {
@@ -17,6 +17,8 @@ export let spotifyApi = {
     token: ""
 };
 
+export const TokenContext = React.createContext(spotifyApi.token);
+
 export function loginUrl() {
     const url = `${spotifyApi.authEndpoint}?client_id=${spotifyApi.clientId}&redirect_uri=${spotifyApi.redirectUri}&scope=${spotifyApi.scopes.join("%20")}&response_type=token&show_dialog=true`;
     console.log("URL: ", url);
@@ -27,14 +29,14 @@ export function setToken(token) {
     spotifyApi.token = token;
 }
 
-export async function fetchData(setData, toFetch = "") {
+export async function fetchData(token, setData, toFetch = "") {
     let responseBody = {};
     
     try {
         const response = await fetch(
             `https://api.spotify.com/v1/${toFetch}`, 
              {headers: {
-                'Authorization': `Bearer ${spotifyApi.token}`
+                'Authorization': `Bearer ${token}`
               }}
         );
         responseBody = response.json();

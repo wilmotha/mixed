@@ -41,7 +41,7 @@ function NavBar(props) {
       <NavBarLinks links={props.links}/>
       <DarkMode darkModeHandler={props.darkModeHandler}/>
       {/* <NavBarLinks links={{"Login": "/login"}}/> */}
-      <SpotifyLogin/>
+      <SpotifyLogin setToken={props.setToken}/>
     </nav>
   );
 }

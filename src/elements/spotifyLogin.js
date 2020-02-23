@@ -2,7 +2,7 @@
 import { jsx, css } from '@emotion/core';
 import { useEffect, useState, useContext } from 'react';
 import { ThemeContext } from './themeContext';
-import { setToken, loginUrl } from '../spotifyApi';
+import { loginUrl } from '../spotifyApi';
 
 
 const hash = window.location.hash
@@ -26,7 +26,7 @@ export default function SpotifyLogin(props) {
     useEffect(() => {
         let _token = hash.access_token;
         if (_token) {
-            setToken(_token);
+            props.setToken(_token);
             setLogin(true);
         }
     }, [hash.access_token]);    

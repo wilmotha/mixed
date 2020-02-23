@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Search from '../elements/search'
-import { fetchData, spotifyApi, query } from '../spotifyApi';
+import { fetchData, TokenContext } from '../spotifyApi';
 import PlaylistDisplay from '../elements/playlistDisplay'
 
 
 function Mix(props) {
     const [ search, setSearch ] = useState('');
-    const [ searchData, setSearchData ] = useState([]); 
+    const [ searchData, setSearchData ] = useState([]);
+    const token = useContext(TokenContext);
 
     const handleSubmit = e => {
         // error handle before setting
@@ -14,8 +15,8 @@ function Mix(props) {
     };
 
     useEffect(() => {
-        if (spotifyApi.token) {
-            fetchData(setSearchData, `search?q=${search}&type=playlist`);
+        if (search) {
+            fetchData(token, setSearchData, `search?q=${search}&type=playlist`);
         }
     }, [ search ]);
 

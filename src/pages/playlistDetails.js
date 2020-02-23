@@ -4,15 +4,16 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ThemeContext } from '../elements/themeContext';
 
-import { fetchData } from '../spotifyApi';
+import { fetchData, TokenContext } from '../spotifyApi';
 
 export default function PlaylistDetails() {
     const { playlistID } = useParams();
     const [ playlistData, setPlaylistData ] = useState([]);
+    const token = useContext(TokenContext);
 
     useEffect(() => {
         if (playlistID) {
-            fetchData(setPlaylistData, `playlists/${playlistID}`);
+            fetchData(token, setPlaylistData, `playlists/${playlistID}`);
         }
     }, [ playlistID ]);
 
