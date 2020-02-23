@@ -12,6 +12,7 @@ import RandomName from './pages/randomName';
 import Mix from './pages/mix';
 import Playlists from './pages/playlists';
 import Home from './pages/home'
+import PlaylistDetails from './pages/playlistDetails';
 
 const navlinks = {
     "Mix": "/mix",
@@ -42,11 +43,14 @@ function App(props) {
           <Route path="/mix">
             <Mix />
           </Route>
-          <Route path="/playlists">
+          <Route exact path="/playlists">
             <Playlists />
           </Route>
-          <Route path="">
+          <Route path="/limpBizkit">
             <RandomName/>
+          </Route>
+          <Route path="/playlists/:playlistID">
+            <PlaylistDetails />
           </Route>
           <Route path="*">
             <h1> 404! </h1>

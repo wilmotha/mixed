@@ -5,6 +5,8 @@ import { ThemeContext } from '../elements/themeContext';
 
 import { fetchData, spotifyApi } from '../spotifyApi';
 
+import PlaylistDisplay from '../elements/playlistDisplay'
+
 function PlaylistBox(props) {
     const theme = useContext(ThemeContext);
 
@@ -72,19 +74,7 @@ export default function Playlists() {
                         {userData['display_name']}
                     </a>
                 </h1>
-                <div>                    
-                    <h3>Playlists</h3>
-                    <div id="playlistHolder">
-                        {userPlaylists.items ? userPlaylists.items.map((playlist) => (
-                            <PlaylistBox 
-                                key={playlist.id}
-                                link={playlist.external_urls ? playlist.external_urls.spotify : null}
-                                image={playlist.images ? playlist.images[0].url : null} 
-                                name={playlist.name}
-                            />
-                        )) : null}
-                    </div>
-                </div>
+                <PlaylistDisplay playlists={userPlaylists.items}/>
             </div>}
         </div>
     );
