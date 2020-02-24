@@ -6,6 +6,8 @@ import { ThemeContext } from '../elements/themeContext';
 import { fetchData, TokenContext } from '../spotifyApi';
 
 import PlaylistDisplay from '../elements/playlistDisplay'
+import { useSelector } from 'react-redux';
+import { getToken } from '../redux/selectors';
 
 function PlaylistBox(props) {
     const theme = useContext(ThemeContext);
@@ -43,7 +45,7 @@ function PlaylistBox(props) {
 export default function Playlists() {
     const [ userData, setUserData ] = useState([]);
     const [ userPlaylists, setPlaylists ] = useState([]);
-    const token = useContext(TokenContext);
+    const token = useSelector(getToken);
  
 
     useEffect(() => {

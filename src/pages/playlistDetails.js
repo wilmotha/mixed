@@ -1,15 +1,15 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ThemeContext } from '../elements/themeContext';
-
-import { fetchData, TokenContext } from '../spotifyApi';
+import { fetchData } from '../spotifyApi';
+import { useSelector } from 'react-redux';
+import { getToken } from '../redux/selectors';
 
 export default function PlaylistDetails() {
     const { playlistID } = useParams();
     const [ playlistData, setPlaylistData ] = useState([]);
-    const token = useContext(TokenContext);
+    const token = useSelector(getToken);
 
     useEffect(() => {
         if (playlistID) {

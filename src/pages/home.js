@@ -1,7 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import { useContext, useEffect, useState } from 'react';
-import { ThemeContext } from '../elements/themeContext';
+import { jsx } from '@emotion/core';
 
 export default function Home(props) {
     return (

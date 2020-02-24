@@ -4,15 +4,13 @@ import { Global, css } from '@emotion/core';
 import * as serviceWorker from './utils/serviceWorker';
 import ReactDOM from 'react-dom';
 import { ThemeContext, theme } from './elements/themeContext';
-import { TokenContext } from './spotifyApi';
 
 import App from './App';
-
-
+import { Provider } from 'react-redux';
+import store from './redux/store'
 
 function Root() {
     const [ darkSlider, setDarkSlider ] = useState(true);
-    const [ token, setToken ] = useState("");
 
     const globalStyles = css`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet');
@@ -26,17 +24,16 @@ function Root() {
     `;
 
     return(
-        <TokenContext.Provider value={token}>
+        <Provider store={store}>
           <ThemeContext.Provider value={darkSlider ? theme.dark : theme.light}>
             <BrowserRouter >
               <Global styles={globalStyles} />
               <App 
                 darkModeHandler={(e) => (setDarkSlider(!darkSlider))}
-                setToken={(_token) => (setToken(_token))}
               />
             </BrowserRouter>
           </ThemeContext.Provider>
-        </TokenContext.Provider>
+        </Provider>
     );
   }
   

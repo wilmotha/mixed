@@ -3,35 +3,27 @@ import { jsx, css } from '@emotion/core';
 import { useEffect, useState, useContext } from 'react';
 import { ThemeContext } from './themeContext';
 import { loginUrl } from '../spotifyApi';
+import { reset_token } from '../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { getToken } from '../redux/selectors';
 
-
-const hash = window.location.hash
-    .substring(1)
-    .split("&")
-    .reduce(function(initial, item) {
-        if (item) {
-            var parts = item.split("=");
-            initial[parts[0]] = decodeURIComponent(parts[1]);
-        }
-        return initial;
-    }, {}); 
-
-// window.location.hash = "";
 
 export default function SpotifyLogin(props) {
+    const token = useSelector(getToken);
     const [login, setLogin] = useState(false);
     const theme = useContext(ThemeContext);
-    
-    // add a timer that makes user renter login
+    const dispatch = useDispatch();
+
+
     useEffect(() => {
-        let _token = hash.access_token;
-        if (_token) {
-            props.setToken(_token);
+        if (token === "") {
+            setLogin(false);
+        } else {
             setLogin(true);
         }
-    }, [hash.access_token]);    
+    }, [ token ]);
 
-    
     const styles = css`
         list-style: none;
         padding: 10px;
@@ -39,16 +31,24 @@ export default function SpotifyLogin(props) {
         margin: 0;
   
   
-        li a {
+        li button {
           display: inline-block;
           padding: 15px;
           padding-top: 20px;
           text-decoration: none;
+          font-size: 16px;
           color: ${theme.textColor};
+          background: transparent;
+          border: none;
         }
   
-        a:hover {
+        button:hover {
           color: ${theme.accent};
+          cursor: pointer;
+        }
+
+        button:focus {
+            outline: none;
         }
   
         .active {
@@ -58,15 +58,17 @@ export default function SpotifyLogin(props) {
 
     return (
         <div>
-            {(!login) && (
-                <ul css={styles}>
-                    <li>
-                        <a href={loginUrl()}>
-                            Login
-                        </a>
-                    </li>
-                </ul>
-            )}
+            {console.log("LOGIN: ", login), console.log("TOKEN: ", token)}
+            <ul css={styles}>
+                <li>
+                    {login ? <button onClick={() => (dispatch(reset_token()))}>
+                        Logout
+                    </button> :
+                    <button onClick={() => (window.location.href=loginUrl())}>
+                        Login
+                    </button>}
+                </li>
+            </ul>
         </div>
     );
 }

@@ -13,6 +13,7 @@ import Mix from './pages/mix';
 import Playlists from './pages/playlists';
 import Home from './pages/home'
 import PlaylistDetails from './pages/playlistDetails';
+import { Callback } from './spotifyApi';
 
 const navlinks = {
     "Mix": "/mix",
@@ -51,6 +52,9 @@ function App(props) {
           </Route>
           <Route path="/playlists/:playlistID">
             <PlaylistDetails />
+          </Route>
+          <Route path="/callback">
+            <Callback/>
           </Route>
           <Route path="*">
             <h1> 404! </h1>

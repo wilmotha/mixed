@@ -1,32 +1,27 @@
 import fetch from 'isomorphic-unfetch';
-import React, { useContext } from 'react'
+import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { set_token } from './redux/actions';
+import { useDispatch } from 'react-redux';
 
-// put this in a struct
 export let spotifyApi = {
     authEndpoint: 'https://accounts.spotify.com/authorize',
     clientId: 'da9f7be280c04af894da601f1492e0af',
     clientSecret: '',
-    redirectUri: 'http://localhost:3000/',
+    redirectUri: 'http://localhost:3000/callback',
     scopes: [
         "user-read-currently-playing",
         "user-read-playback-state",
         'playlist-modify-public', 
         'playlist-modify-private', 
         'user-read-private'
-    ],
-    token: ""
+    ]
 };
-
-export const TokenContext = React.createContext(spotifyApi.token);
 
 export function loginUrl() {
     const url = `${spotifyApi.authEndpoint}?client_id=${spotifyApi.clientId}&redirect_uri=${spotifyApi.redirectUri}&scope=${spotifyApi.scopes.join("%20")}&response_type=token&show_dialog=true`;
     console.log("URL: ", url);
     return url;
-}
-
-export function setToken(token) {
-    spotifyApi.token = token;
 }
 
 export async function fetchData(token, setData, toFetch = "") {
@@ -43,6 +38,30 @@ export async function fetchData(token, setData, toFetch = "") {
     } catch(e) {
         console.log("oops... ", e);
     }
-    let re;
     responseBody.then((result) => (setData(result), console.log(result)));
+}
+
+export function Callback() {
+    const dispatch = useDispatch();
+
+    const hash = window.location.hash
+    .substring(1)
+    .split("&")
+    .reduce(function(initial, item) {
+        if (item) {
+            var parts = item.split("=");
+            initial[parts[0]] = decodeURIComponent(parts[1]);
+        }
+        return initial;
+    }, {}); 
+
+    let _token = hash.access_token;
+    if (_token) {
+        dispatch(set_token(_token));
+    }
+
+    // change this to go back to users previous location
+    return (
+        <Redirect exact to='/'/>
+    )
 }

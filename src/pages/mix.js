@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Search from '../elements/search'
-import { fetchData, TokenContext } from '../spotifyApi';
+import { fetchData } from '../spotifyApi';
 import PlaylistDisplay from '../elements/playlistDisplay'
-
+import { useSelector } from 'react-redux';
+import { getToken } from '../redux/selectors';
 
 function Mix(props) {
     const [ search, setSearch ] = useState('');
     const [ searchData, setSearchData ] = useState([]);
-    const token = useContext(TokenContext);
+    const token = useSelector(getToken);
 
     const handleSubmit = e => {
         // error handle before setting
