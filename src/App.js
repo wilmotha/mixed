@@ -14,6 +14,7 @@ import Playlists from './pages/playlists';
 import Home from './pages/home'
 import PlaylistDetails from './pages/playlistDetails';
 import { Callback } from './spotifyApi';
+import Mixed from './pages/mixed';
 
 const navlinks = {
     "Mix": "/mix",
@@ -41,7 +42,10 @@ function App(props) {
           <Route exact path="/">
             <Home/>
           </Route>
-          <Route path="/mix">
+          <Route path="/mix/:playlistIDs">
+            <Mixed />
+          </Route>
+          <Route exact path="/mix">
             <Mix />
           </Route>
           <Route exact path="/playlists">

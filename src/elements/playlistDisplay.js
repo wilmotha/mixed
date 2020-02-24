@@ -2,11 +2,11 @@
 import { jsx, css } from '@emotion/core';
 import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../elements/themeContext';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 
 function PlaylistBox(props) {
     const theme = useContext(ThemeContext);
-    const [ check, setCheck ] = useState(false); 
+    const [ check, setCheck ] = useState(false);
 
     const styles = css`
         padding: 20px;
@@ -55,6 +55,8 @@ function PlaylistBox(props) {
 
 export default function PlaylistDisplay(props) {
     const [ mixList, setMixList ] = useState([]);
+    let history = useHistory();
+
 
     const addPlaylist = id => {
         if (mixList.includes(id)) {
@@ -64,6 +66,14 @@ export default function PlaylistDisplay(props) {
         }
     }
     
+    const mix = e => {
+        let path = "mix/";
+        mixList.map((mix) => path += mix + "&");
+        path = path.slice(0, -1);
+
+        history.push(path);
+    }
+
     const styles = css`
         #playlistHolder {
             display: inline-flex;
@@ -74,7 +84,7 @@ export default function PlaylistDisplay(props) {
     return (
         <div css={styles} onSubmit={addPlaylist}>                    
             <h3>Playlists</h3>
-            <button onClick={() => console.log(mixList)}>Mix Playlists</button>
+            <button onClick={mix}>Mix Playlists</button>
             <div id="playlistHolder">
                 {props.playlists ? props.playlists.map((playlist) => (
                     
