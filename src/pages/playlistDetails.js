@@ -11,6 +11,13 @@ export default function PlaylistDetails() {
     const [ playlistData, setPlaylistData ] = useState([]);
     const token = useSelector(getToken);
 
+    const styles = css`
+        li {
+            display: inline-flex;
+            padding-right: 20px;            
+        }
+    `;
+
     useEffect(() => {
         if (playlistID) {
             fetchData(token, setPlaylistData, `playlists/${playlistID}`);
@@ -18,13 +25,21 @@ export default function PlaylistDetails() {
     }, [ playlistID ]);
 
     return (
-        <div>
+        <div css={styles}>
             <h1>{playlistData.name}</h1>
             <div>
                 {playlistData.tracks ? playlistData.tracks.items.map((song) => (
-                    <div>
-                        <h3>{song.track ? song.track.name : null}</h3>
-                    </div>
+                    <ul>
+                        <li>
+                            {song.track ? song.track.name : null}
+                        </li>
+                        <li>
+                            {song.track ? (song.track.artists ? song.track.artists[0].name : null) : null}
+                        </li>
+                        <li>
+                            {song.track ? (song.track.album ? song.track.album.name : null) : null }
+                        </li>
+                    </ul>
                 )) : null}
             </div>
         </div>

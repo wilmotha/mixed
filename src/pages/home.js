@@ -14,11 +14,10 @@ export default function Home(props) {
                     spotify
                 </li>
                 <li>
-                    The Playlists tab will show you your playlists
+                    The Playlists tab will show you your personal playlists
                 </li>
                 <li>
-                    The Mix section will actually do the mixing but it is 
-                    currently in the works at the moment
+                    The search section will let you search for playlists
                 </li>
                 <li>
                     The name generator is just for fun;)

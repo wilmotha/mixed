@@ -91,7 +91,7 @@ export default function PlaylistDisplay(props) {
                     <PlaylistBox 
                         key={playlist.id}
                         link={playlist.id}
-                        // image={playlist.images ? playlist.images[0].url : null} 
+                        image={playlist.images ? playlist.images[0].url : null} 
                         name={playlist.name}
                         addPlaylist={addPlaylist}
                     />

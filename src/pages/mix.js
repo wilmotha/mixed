@@ -23,13 +23,13 @@ function Mix(props) {
 
     return (
         <div>
-            <h1> Mix Time </h1>
+            <h1> Search </h1>
             <Search
-                placeHolder="enter playlist url"
+                placeHolder="Search playlist"
                 data={search}
                 handleCancel={() => (setSearch(''))} 
                 handleSubmit={handleSubmit}
-                errorMessage="enter a valid playlist url"
+                errorMessage="Could not find anything"
             />
             <PlaylistDisplay playlists={searchData.playlists ? searchData.playlists.items : null} />
         </div>

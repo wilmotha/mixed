@@ -15,7 +15,7 @@ function PlaylistHolder(props) {
             <div>
                 {playlist.tracks ? playlist.tracks.items.map((song) => (
                     <div>
-                        <h3>{song ? (song.track ? song.track.name : null) : console.log("FAILED HERE: ", playlist)}</h3>
+                        <h3>{song ? (song.track ? song.track.name : null) : null}</h3>
                     </div>
                 )) : null}
             </div>
@@ -33,14 +33,11 @@ function mix(playlistsIN) {
         },
     }
 
-    // console.log("YEEPER BABY: ", playlists);
-
     const length1 = (playlists[0] ? playlists[0].tracks.items.length : 0);
     const length2 = (playlists[1] ? playlists[1].tracks.items.length : 0);
 
     for (let i = 0, j = 0; i+j < length1+length2;) {
         if (i < length1) {
-            // console.log("ADD1: ", splaylists[0].tracks.items[i]);
             newPlaylist.tracks.items.push(playlists[0].tracks.items[i]);
             i++;
         }
@@ -51,7 +48,6 @@ function mix(playlistsIN) {
     }
 
     playlists.unshift(newPlaylist);
-    // console.log("EVEN YEEPER: ", playlists);
     return playlists;
 }
 
@@ -73,7 +69,6 @@ export default function Mixed(props) {
 
     const savePlaylist = e => {
         const newPlaylist = playlists[0];
-        // console.log("funder: ", newPlaylist);
         createPlaylist(token, playlists[1].owner.id, newPlaylist.name, newPlaylist.description, setId);
     }
     

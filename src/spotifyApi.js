@@ -98,6 +98,6 @@ export function Callback() {
 
     // change this to go back to users previous location
     return (
-        <Redirect exact to='/'/>
+        <Redirect to='/'/>
     )
 }

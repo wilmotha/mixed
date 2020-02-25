@@ -17,7 +17,7 @@ import { Callback } from './spotifyApi';
 import Mixed from './pages/mixed';
 
 const navlinks = {
-    "Mix": "/mix",
+    "Search": "/mix",
     "Playlists": "/playlists",
     "Name Generator": "/limpBizkit"
 };
