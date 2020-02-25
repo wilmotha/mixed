@@ -8,7 +8,7 @@ export let spotifyApi = {
     authEndpoint: 'https://accounts.spotify.com/authorize',
     clientId: 'da9f7be280c04af894da601f1492e0af',
     clientSecret: '',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: 'https://mixed-spotify.herokuapp.com/callback',
     scopes: [
         "user-read-currently-playing",
         "user-read-playback-state",
