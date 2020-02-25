@@ -57,12 +57,10 @@ export async function createPlaylist(token, userID, name, description, setData) 
         }
     }
     );
-    // const responseBody = await response.json();
-    // responseBody.
-    // responseBody.then((result) => (setData(result), console.log("YEET: ", result)));
+    setData(await response.json());
 }
 
-export async function addSongsPost(token, id,songs) {
+export async function addSongsPost(token, id, songs) {
     const response = await fetch(
     `https://api.spotify.com/v1/playlists/${id}/tracks`,
     {

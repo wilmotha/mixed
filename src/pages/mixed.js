@@ -81,7 +81,7 @@ export default function Mixed(props) {
         if (id != "") {
             console.log("PEOPLE MAGAZINE: ", id);
             const uris = (playlists[0].tracks ? (playlists[0].tracks.items.map(song => song.track.uri)) : null);
-            addSongsPost(token, id, uris);
+            addSongsPost(token, id.id, uris);
         }
     }, [ id ]);
 
