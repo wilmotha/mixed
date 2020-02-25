@@ -1,22 +1,70 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx, css } from '@emotion/core';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getToken } from '../redux/selectors';
 import { fetchData, createPlaylist, addSongsPost } from '../spotifyApi';
 import { useParams } from 'react-router-dom';
+import PlaylistDetails from '../pages/playlistDetails';
 
 
 function PlaylistHolder(props) {
     const playlist = props.playlist;
+
+    const styles = css`
+        ul {
+            columns: 3;
+            -webkit-columns: 3;
+            -moz-columns: 3;
+            border-bottom: solid #303030 1px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .title {
+            color: grey;
+        }
+
+        .songs {
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        li {
+
+        }
+    `;
+
+
     return (
-        <div>
+        <div css={styles}>
             <h1>{playlist.name}</h1>
             <div>
+                <ul class="title">
+                    <li>
+                        Title
+                    </li>
+                    <li>
+                        Artist
+                    </li>
+                    <li>
+                        Album
+                    </li>
+                </ul>
                 {playlist.tracks ? playlist.tracks.items.map((song) => (
-                    <div>
-                        <h3>{song ? (song.track ? song.track.name : null) : null}</h3>
-                    </div>
+                    <ul className="songs">
+                        <li>
+                            {song.track ? song.track.name : null}
+                        </li>
+                        <li>
+                            {song.track ? (song.track.artists ? song.track.artists[0].name : null) : null}
+                        </li>
+                        <li>
+                            {song.track ? (song.track.album ? song.track.album.name : null) : null }
+                        </li>
+                    </ul>
                 )) : null}
             </div>
         </div>

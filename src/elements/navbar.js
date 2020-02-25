@@ -8,9 +8,12 @@ import SiteTitle from './navbarElem/SiteTitle';
 import NavBarLinks from './navbarElem/NavbarLinks';
 import DarkMode from './navbarElem/DarkMode';
 import SpotifyLogin from './spotifyLogin';
+import { useSelector } from 'react-redux';
+import { getTheme } from '../redux/selectors';
 
 function NavBar(props) {
   const theme = useContext(ThemeContext);
+  // const theme = useSelector(getTheme);
 
   const styles = css`
       position: fixed;
@@ -36,12 +39,13 @@ function NavBar(props) {
 
   return (
     <nav css={styles}>
+      {console.log("DARK: ", theme)}
       <HamburgerMenu darkModeHandler={props.darkModeHandler} links={props.links}/>
       <SiteTitle name={props.name} style={title}/>
       <NavBarLinks links={props.links}/>
       <DarkMode darkModeHandler={props.darkModeHandler}/>
       {/* <NavBarLinks links={{"Login": "/login"}}/> */}
-      <SpotifyLogin setToken={props.setToken}/>
+      <SpotifyLogin />
     </nav>
   );
 }

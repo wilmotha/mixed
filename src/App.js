@@ -19,7 +19,7 @@ import Mixed from './pages/mixed';
 const navlinks = {
     "Search": "/mix",
     "Playlists": "/playlists",
-    "Name Generator": "/limpBizkit"
+    // "Name Generator": "/limpBizkit"
 };
 
 function App(props) {
@@ -36,7 +36,7 @@ function App(props) {
 
   return (
     <div css={styles}>
-      <Navbar name="mixed" darkModeHandler={props.darkModeHandler} links={navlinks} setToken={props.setToken}/>
+      <Navbar name="mixed" darkModeHandler={props.darkModeHandler} links={navlinks} />
       <main>
         <Switch>
           <Route exact path="/">

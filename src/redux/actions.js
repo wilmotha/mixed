@@ -2,10 +2,9 @@ export const TOGGLE_THEME = 'TOGGLE_THEME';
 export const SET_TOKEN = 'SET_TOKEN';
 export const RESET_TOKEN = 'RESET_TOKEN';
 
-export function toggle_theme(theme) {
+export function toggle_theme() {
     return {
-        type: TOGGLE_THEME,
-        theme
+        type: TOGGLE_THEME
     }
 }
 

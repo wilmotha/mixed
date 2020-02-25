@@ -4,10 +4,11 @@ import { Global, css } from '@emotion/core';
 import * as serviceWorker from './utils/serviceWorker';
 import ReactDOM from 'react-dom';
 import { ThemeContext, theme } from './elements/themeContext';
+import { PersistGate } from 'redux-persist/integration/react'
 
 import App from './App';
 import { Provider } from 'react-redux';
-import store from './redux/store'
+import { store, persistor } from './redux/store'
 
 function Root() {
     const [ darkSlider, setDarkSlider ] = useState(true);
@@ -25,15 +26,17 @@ function Root() {
 
     return(
         <Provider store={store}>
-          <ThemeContext.Provider value={darkSlider ? theme.dark : theme.light}>
-            <BrowserRouter >
-              <Global styles={globalStyles} />
-              <App 
-                darkModeHandler={(e) => (setDarkSlider(!darkSlider))}
-              />
-            </BrowserRouter>
-          </ThemeContext.Provider>
-        </Provider>
+          <PersistGate loading={null} persistor={persistor}>
+            <ThemeContext.Provider value={darkSlider ? theme.dark : theme.light}>
+              <BrowserRouter >
+                <Global styles={globalStyles} />
+                <App 
+                  darkModeHandler={(e) => (setDarkSlider(!darkSlider))}
+                />
+              </BrowserRouter>
+            </ThemeContext.Provider>
+          </PersistGate>
+        </Provider>    
     );
   }
   

@@ -12,9 +12,28 @@ export default function PlaylistDetails() {
     const token = useSelector(getToken);
 
     const styles = css`
+        ul {
+            columns: 3;
+            -webkit-columns: 3;
+            -moz-columns: 3;
+            border-bottom: solid #303030 1px;
+        }
+
         li {
-            display: inline-flex;
-            padding-right: 20px;            
+            list-style: none;
+        }
+
+        .title {
+            color: grey;
+        }
+
+        .songs {
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        li {
+
         }
     `;
 
@@ -28,8 +47,19 @@ export default function PlaylistDetails() {
         <div css={styles}>
             <h1>{playlistData.name}</h1>
             <div>
+                <ul class="title">
+                    <li>
+                        Title
+                    </li>
+                    <li>
+                        Artist
+                    </li>
+                    <li>
+                        Album
+                    </li>
+                </ul>
                 {playlistData.tracks ? playlistData.tracks.items.map((song) => (
-                    <ul>
+                    <ul className="songs">
                         <li>
                             {song.track ? song.track.name : null}
                         </li>

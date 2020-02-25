@@ -19,9 +19,9 @@ export default function Home(props) {
                 <li>
                     The search section will let you search for playlists
                 </li>
-                <li>
+                {/* <li>
                     The name generator is just for fun;)
-                </li>
+                </li> */}
             </ul>
         </div>
     );

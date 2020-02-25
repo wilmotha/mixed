@@ -46,6 +46,8 @@ export default function Playlists() {
     const [ userData, setUserData ] = useState([]);
     const [ userPlaylists, setPlaylists ] = useState([]);
     const token = useSelector(getToken);
+    const theme = useContext(ThemeContext);
+
  
 
     useEffect(() => {
@@ -69,6 +71,10 @@ export default function Playlists() {
             width: 100px;
             height: 100px;
         }
+        a {
+            text-decoration: none;
+            color: ${theme.textColor}
+        }
     `;
 
     return (
@@ -76,7 +82,7 @@ export default function Playlists() {
             {userData && <div> 
                 <h1>
                     <a href={userData.external_urls ? userData.external_urls.spotify : null }>
-                        <img src={userData.images ? userData.images[0].url : null} />
+                        {/* <img src={userData.images ? userData.images[0].url : null} /> */}
                         {userData['display_name']}
                     </a>
                 </h1>
