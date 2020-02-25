@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Global, css } from '@emotion/core';
 import * as serviceWorker from './utils/serviceWorker';
 import ReactDOM from 'react-dom';
-import { ThemeContext, theme } from './elements/themeContext';
 import { PersistGate } from 'redux-persist/integration/react'
+import { useSelector } from 'react-redux';
+import { getTheme } from './redux/selectors';
+
 
 import App from './App';
 import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store'
 
 function Root() {
-    const [ darkSlider, setDarkSlider ] = useState(true);
+    const theme = useSelector(getTheme);
 
     const globalStyles = css`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet');
@@ -20,28 +22,24 @@ function Root() {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        background: ${darkSlider ? theme.dark : theme.light};
+        background: ${theme.background};
       }
     `;
 
-    return(
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <ThemeContext.Provider value={darkSlider ? theme.dark : theme.light}>
-              <BrowserRouter >
-                <Global styles={globalStyles} />
-                <App 
-                  darkModeHandler={(e) => (setDarkSlider(!darkSlider))}
-                />
-              </BrowserRouter>
-            </ThemeContext.Provider>
-          </PersistGate>
-        </Provider>    
+    return(  
+        <BrowserRouter >
+          <Global styles={globalStyles} />
+          <App />
+        </BrowserRouter>   
     );
   }
   
   ReactDOM.render(
-    <Root />,
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Root />
+      </PersistGate>
+    </Provider>,
     document.getElementById('root')
   );
 

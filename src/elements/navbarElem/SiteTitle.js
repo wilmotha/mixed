@@ -1,12 +1,15 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ThemeContext } from '../themeContext';
+
+
+import { useSelector } from 'react-redux';
+import { getTheme } from '../../redux/selectors';
+
 
 function SiteTitle(props) {
-    const theme = useContext(ThemeContext);
-  
+    const theme = useSelector(getTheme);
+
     const styles = css`
       width: auto;
       padding: 10px;

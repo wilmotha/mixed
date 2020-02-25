@@ -1,19 +1,16 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { useContext } from 'react';
-import { ThemeContext } from './themeContext';
+import { useSelector } from 'react-redux';
+import { getTheme } from '../redux/selectors';
 
 import HamburgerMenu from './navbarElem/HamburgerMenu';
 import SiteTitle from './navbarElem/SiteTitle';
 import NavBarLinks from './navbarElem/NavbarLinks';
 import DarkMode from './navbarElem/DarkMode';
 import SpotifyLogin from './spotifyLogin';
-import { useSelector } from 'react-redux';
-import { getTheme } from '../redux/selectors';
 
 function NavBar(props) {
-  const theme = useContext(ThemeContext);
-  // const theme = useSelector(getTheme);
+  const theme = useSelector(getTheme);
 
   const styles = css`
       position: fixed;

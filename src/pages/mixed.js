@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { getToken } from '../redux/selectors';
 import { fetchData, createPlaylist, addSongsPost } from '../spotifyApi';
 import { useParams } from 'react-router-dom';
-import PlaylistDetails from '../pages/playlistDetails';
 
 
 function PlaylistHolder(props) {

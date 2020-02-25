@@ -70,7 +70,7 @@ function Slider(props) {
     return (
         <div css={styles}>
             <label className="switch">
-                <input onClick={props.darkModeHandler} type="checkbox" />
+                <input onClick={props.clickHandler} checked={props.checked} type="checkbox" />
                 <span className="slider round"></span>
             </label>
         </div>

@@ -1,19 +1,19 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { useContext } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { ThemeContext } from './elements/themeContext';
+import { useSelector } from 'react-redux';
+import { getTheme } from './redux/selectors'
 
 // elements
 import Navbar from './elements/navbar';
+import { Callback } from './spotifyApi';
+import PlaylistDetails from './pages/playlistDetails';
 
 // pages
 import RandomName from './pages/randomName';
 import Mix from './pages/mix';
 import Playlists from './pages/playlists';
 import Home from './pages/home'
-import PlaylistDetails from './pages/playlistDetails';
-import { Callback } from './spotifyApi';
 import Mixed from './pages/mixed';
 
 const navlinks = {
@@ -23,7 +23,7 @@ const navlinks = {
 };
 
 function App(props) {
-  const theme = useContext(ThemeContext);
+  const theme = useSelector(getTheme);
 
   const styles = css`
     background: ${theme.background};

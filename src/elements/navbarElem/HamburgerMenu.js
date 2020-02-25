@@ -1,15 +1,18 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { useState, useContext } from 'react';
-import { ThemeContext } from '../themeContext';
+import { useState } from 'react';
 
 import NavBarLinks from './NavbarLinks';
 import DarkMode from './DarkMode';
 import SpotifyLogin from '../spotifyLogin';
 
+import { useSelector } from 'react-redux';
+import { getTheme } from '../../redux/selectors';
+
+
 function HamburgerMenu(props) {
     const [ open, setOpen ] = useState(false);
-    const theme = useContext(ThemeContext);
+    const theme = useSelector(getTheme);
   
     const style = css`
         visibility: hidden;

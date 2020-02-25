@@ -1,12 +1,13 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { useContext } from 'react';
-import {ThemeContext} from '../themeContext';
 import { NavLink } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
+import { getTheme } from '../../redux/selectors';
 
 
 function NavBarLinks(props) {
-    const theme = useContext(ThemeContext);
+    const theme = useSelector(getTheme);
     
     const styles = css`
         list-style: none;

@@ -1,18 +1,17 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { useEffect, useState, useContext } from 'react';
-import { ThemeContext } from './themeContext';
+import { useEffect, useState } from 'react';
 import { loginUrl } from '../spotifyApi';
 import { reset_token } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { getToken } from '../redux/selectors';
+import { getToken, getTheme } from '../redux/selectors';
+
 
 
 export default function SpotifyLogin(props) {
     const token = useSelector(getToken);
     const [login, setLogin] = useState(false);
-    const theme = useContext(ThemeContext);
+    const theme = useSelector(getTheme);
     const dispatch = useDispatch();
 
 

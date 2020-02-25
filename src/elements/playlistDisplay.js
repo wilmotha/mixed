@@ -1,11 +1,14 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { useContext, useEffect, useState } from 'react';
-import { ThemeContext } from '../elements/themeContext';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
+import { getTheme } from '../redux/selectors';
+
 
 function PlaylistBox(props) {
-    const theme = useContext(ThemeContext);
+    const theme = useSelector(getTheme);
     const [ check, setCheck ] = useState(false);
 
     const styles = css`

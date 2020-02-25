@@ -2,6 +2,7 @@ import { TOGGLE_THEME, SET_TOKEN, RESET_TOKEN } from './actions';
 
 const theme = {
     light: {
+      themeName: "light",
       themeColor: "#ffffff",
       background: "#fffffff",
       accent: "#1ED760",
@@ -10,6 +11,7 @@ const theme = {
       textColor: "#191414"
     },
     dark: {
+      themeName: "dark",
       themeColor: "#191414",
       background: "#212121",
       accent: "#1ED760",

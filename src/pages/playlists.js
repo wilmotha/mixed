@@ -1,16 +1,15 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { useContext, useEffect, useState } from 'react';
-import { ThemeContext } from '../elements/themeContext';
+import { useEffect, useState } from 'react';
 
-import { fetchData, TokenContext } from '../spotifyApi';
+import { fetchData } from '../spotifyApi';
 
 import PlaylistDisplay from '../elements/playlistDisplay'
 import { useSelector } from 'react-redux';
-import { getToken } from '../redux/selectors';
+import { getToken, getTheme } from '../redux/selectors';
 
 function PlaylistBox(props) {
-    const theme = useContext(ThemeContext);
+    const theme = useSelector(getToken);
 
     const styles = css`
         padding: 20px;
@@ -46,7 +45,7 @@ export default function Playlists() {
     const [ userData, setUserData ] = useState([]);
     const [ userPlaylists, setPlaylists ] = useState([]);
     const token = useSelector(getToken);
-    const theme = useContext(ThemeContext);
+    const theme = useSelector(getTheme);
 
  
 
