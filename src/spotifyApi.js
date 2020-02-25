@@ -41,6 +41,44 @@ export async function fetchData(token, setData, toFetch = "") {
     responseBody.then((result) => (setData(result), console.log(result)));
 }
 
+export async function createPlaylist(token, userID, name, description, setData) {
+    const response = await fetch(
+    `https://api.spotify.com/v1/users/${userID}/playlists`,
+    {
+        method: 'POST',
+        body: JSON.stringify({
+            "name": name,
+            "description": description,
+            "public": true
+        }),
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    }
+    );
+    // const responseBody = await response.json();
+    // responseBody.
+    // responseBody.then((result) => (setData(result), console.log("YEET: ", result)));
+}
+
+export async function addSongsPost(token, id,songs) {
+    const response = await fetch(
+    `https://api.spotify.com/v1/playlists/${id}/tracks`,
+    {
+        method: 'POST',
+        body: JSON.stringify({
+            "uris": songs
+        }),
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    }
+    );
+    const responseBody = await response.json();
+}
+
 export function Callback() {
     const dispatch = useDispatch();
 
